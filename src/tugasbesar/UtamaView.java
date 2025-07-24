@@ -63,6 +63,11 @@ public class UtamaView extends javax.swing.JFrame {
 
         jButtonMovie.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonMovie.setText("MOVIE");
+        jButtonMovie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMovieMouseClicked(evt);
+            }
+        });
         jPanel1.add(jButtonMovie, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 130, 50));
 
         jButtonFood.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -172,6 +177,13 @@ public class UtamaView extends javax.swing.JFrame {
         utama.setVisible(true);
         this.dispose();          
     }//GEN-LAST:event_jButtonFoodMouseClicked
+
+    private void jButtonMovieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMovieMouseClicked
+        // TODO add your handling code here:
+        MovieView movie = new MovieView();
+        movie.setVisible(true);
+        this.dispose();    
+    }//GEN-LAST:event_jButtonMovieMouseClicked
 
     /**
      * @param args the command line arguments
