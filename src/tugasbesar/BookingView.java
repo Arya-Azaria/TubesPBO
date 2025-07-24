@@ -5,17 +5,24 @@
  */
 package tugasbesar;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author aryay
  */
 public class BookingView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form BookingView
-     */
+    Booking booking = new Booking();
+
     public BookingView() {
         initComponents();
+        jTextKonfirmasi.setEditable(false);
+        jTextStruk.setEditable(false);
     }
 
     /**
@@ -78,16 +85,16 @@ public class BookingView extends javax.swing.JFrame {
         jType = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextKonfirmasi = new javax.swing.JTextArea();
         jLabel25 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        jTextStruk = new javax.swing.JTextArea();
+        jButtonSimpan = new javax.swing.JButton();
         jButtonFood = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonBeliTiket = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 800));
@@ -387,11 +394,11 @@ public class BookingView extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("CIWALK X-TIX(BANDUNG)\n(JUDUL FILM)\n(TYPE)(NO.KURSI)\nWAKTU : 12.00\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextKonfirmasi.setColumns(20);
+        jTextKonfirmasi.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jTextKonfirmasi.setRows(5);
+        jTextKonfirmasi.setText("-");
+        jScrollPane1.setViewportView(jTextKonfirmasi);
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 490, 200));
 
@@ -415,24 +422,29 @@ public class BookingView extends javax.swing.JFrame {
         jLabel21.setText("STRUK PEMBELIAN");
         jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jTextArea2.setRows(5);
-        jTextArea2.setText("CIWALK X-TIX(BANDUNG)\n(JUDUL FILM)\n(TYPE)(NO.KURSI)\nWAKTU : 12.00\n==========================\nTOTAL HARGA:\n==========================\nTERIMAKASIH TELAH MEMBELI TIKET DI PLATFORM KAMI:)");
-        jScrollPane2.setViewportView(jTextArea2);
+        jTextStruk.setColumns(20);
+        jTextStruk.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextStruk.setRows(5);
+        jTextStruk.setText("-");
+        jScrollPane2.setViewportView(jTextStruk);
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 490, 190));
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 530, 250));
 
-        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton3.setText("SIMPAN PILIHAN");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        jButtonSimpan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonSimpan.setText("SIMPAN PILIHAN");
+        jButtonSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSimpanMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 670, 340, 50));
+        jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSimpanActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 670, 340, 50));
 
         jButtonFood.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButtonFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/LAPERRR .png"))); // NOI18N
@@ -448,14 +460,19 @@ public class BookingView extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 660, 530, 50));
 
-        jButton4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton4.setText("BELI TIKET");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        jButtonBeliTiket.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonBeliTiket.setText("BELI TIKET");
+        jButtonBeliTiket.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonBeliTiketMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 530, 50));
+        jButtonBeliTiket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBeliTiketActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonBeliTiket, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 530, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 750));
 
@@ -546,17 +563,17 @@ public class BookingView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonKembaliActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonSimpanActionPerformed
 
     private void jButtonFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFoodActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonFoodActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonBeliTiketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeliTiketActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonBeliTiketActionPerformed
 
     private void jButtonFoodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFoodMouseClicked
         // TODO add your handling code here:
@@ -565,6 +582,16 @@ public class BookingView extends javax.swing.JFrame {
         this.dispose();                 
         
     }//GEN-LAST:event_jButtonFoodMouseClicked
+
+    private void jButtonSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSimpanMouseClicked
+        // TODO add your handling code here:
+        booking.simpanPilihan(BookingView.this);
+    }//GEN-LAST:event_jButtonSimpanMouseClicked
+
+    private void jButtonBeliTiketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBeliTiketMouseClicked
+        // TODO add your handling code here:
+        booking.struk(this);
+    }//GEN-LAST:event_jButtonBeliTiketMouseClicked
 
     /**
      * @param args the command line arguments
@@ -620,10 +647,10 @@ public class BookingView extends javax.swing.JFrame {
     private javax.swing.JCheckBox c4;
     private javax.swing.JCheckBox c5;
     private javax.swing.JCheckBox c6;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonBeliTiket;
     private javax.swing.JButton jButtonFood;
     private javax.swing.JButton jButtonKembali;
+    private javax.swing.JButton jButtonSimpan;
     private javax.swing.JComboBox<String> jFilm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -659,9 +686,249 @@ public class BookingView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jTempat;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextKonfirmasi;
+    private javax.swing.JTextArea jTextStruk;
     private javax.swing.JComboBox<String> jType;
     private javax.swing.JComboBox<String> jWaktu;
     // End of variables declaration//GEN-END:variables
+
+    public JCheckBox getA1() {
+        return a1;
+    }
+
+    public void setA1(JCheckBox a1) {
+        this.a1 = a1;
+    }
+
+    public JCheckBox getA2() {
+        return a2;
+    }
+
+    public void setA2(JCheckBox a2) {
+        this.a2 = a2;
+    }
+
+    public JCheckBox getA3() {
+        return a3;
+    }
+
+    public void setA3(JCheckBox a3) {
+        this.a3 = a3;
+    }
+
+    public JCheckBox getA4() {
+        return a4;
+    }
+
+    public void setA4(JCheckBox a4) {
+        this.a4 = a4;
+    }
+
+    public JCheckBox getA5() {
+        return a5;
+    }
+
+    public void setA5(JCheckBox a5) {
+        this.a5 = a5;
+    }
+
+    public JCheckBox getA6() {
+        return a6;
+    }
+
+    public void setA6(JCheckBox a6) {
+        this.a6 = a6;
+    }
+
+    public JCheckBox getB1() {
+        return b1;
+    }
+
+    public void setB1(JCheckBox b1) {
+        this.b1 = b1;
+    }
+
+    public JCheckBox getB2() {
+        return b2;
+    }
+
+    public void setB2(JCheckBox b2) {
+        this.b2 = b2;
+    }
+
+    public JCheckBox getB3() {
+        return b3;
+    }
+
+    public void setB3(JCheckBox b3) {
+        this.b3 = b3;
+    }
+
+    public JCheckBox getB4() {
+        return b4;
+    }
+
+    public void setB4(JCheckBox b4) {
+        this.b4 = b4;
+    }
+
+    public JCheckBox getB5() {
+        return b5;
+    }
+
+    public void setB5(JCheckBox b5) {
+        this.b5 = b5;
+    }
+
+    public JCheckBox getB6() {
+        return b6;
+    }
+
+    public void setB6(JCheckBox b6) {
+        this.b6 = b6;
+    }
+
+    public JCheckBox getC1() {
+        return c1;
+    }
+
+    public void setC1(JCheckBox c1) {
+        this.c1 = c1;
+    }
+
+    public JCheckBox getC2() {
+        return c2;
+    }
+
+    public void setC2(JCheckBox c2) {
+        this.c2 = c2;
+    }
+
+    public JCheckBox getC3() {
+        return c3;
+    }
+
+    public void setC3(JCheckBox c3) {
+        this.c3 = c3;
+    }
+
+    public JCheckBox getC4() {
+        return c4;
+    }
+
+    public void setC4(JCheckBox c4) {
+        this.c4 = c4;
+    }
+
+    public JCheckBox getC5() {
+        return c5;
+    }
+
+    public void setC5(JCheckBox c5) {
+        this.c5 = c5;
+    }
+
+    public JCheckBox getC6() {
+        return c6;
+    }
+
+    public void setC6(JCheckBox c6) {
+        this.c6 = c6;
+    }
+
+    public JButton getjButtonBeliTiket() {
+        return jButtonBeliTiket;
+    }
+
+    public void setjButtonBeliTiket(JButton jButtonBeliTiket) {
+        this.jButtonBeliTiket = jButtonBeliTiket;
+    }
+
+    public JButton getjButtonFood() {
+        return jButtonFood;
+    }
+
+    public void setjButtonFood(JButton jButtonFood) {
+        this.jButtonFood = jButtonFood;
+    }
+
+    public JButton getjButtonKembali() {
+        return jButtonKembali;
+    }
+
+    public void setjButtonKembali(JButton jButtonKembali) {
+        this.jButtonKembali = jButtonKembali;
+    }
+
+    public JButton getjButtonSimpan() {
+        return jButtonSimpan;
+    }
+
+    public void setjButtonSimpan(JButton jButtonSimpan) {
+        this.jButtonSimpan = jButtonSimpan;
+    }
+
+    public JComboBox<String> getjFilm() {
+        return jFilm;
+    }
+
+    public void setjFilm(JComboBox<String> jFilm) {
+        this.jFilm = jFilm;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    public void setjScrollPane2(JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    public JComboBox<String> getjTempat() {
+        return jTempat;
+    }
+
+    public void setjTempat(JComboBox<String> jTempat) {
+        this.jTempat = jTempat;
+    }
+
+    public JTextArea getjTextKonfirmasi() {
+        return jTextKonfirmasi;
+    }
+
+    public void setjTextKonfirmasi(JTextArea jTextKonfirmasi) {
+        this.jTextKonfirmasi = jTextKonfirmasi;
+    }
+
+    public JTextArea getjTextStruk() {
+        return jTextStruk;
+    }
+
+    public void setjTextStruk(JTextArea jTextStruk) {
+        this.jTextStruk = jTextStruk;
+    }
+
+    public JComboBox<String> getjType() {
+        return jType;
+    }
+
+    public void setjType(JComboBox<String> jType) {
+        this.jType = jType;
+    }
+
+    public JComboBox<String> getjWaktu() {
+        return jWaktu;
+    }
+
+    public void setjWaktu(JComboBox<String> jWaktu) {
+        this.jWaktu = jWaktu;
+    }
 }

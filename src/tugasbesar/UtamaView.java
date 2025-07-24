@@ -113,6 +113,11 @@ public class UtamaView extends javax.swing.JFrame {
                 jButtonBookMouseClicked(evt);
             }
         });
+        jButtonBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBookActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 130, 50));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -172,6 +177,10 @@ public class UtamaView extends javax.swing.JFrame {
         utama.setVisible(true);
         this.dispose();          
     }//GEN-LAST:event_jButtonFoodMouseClicked
+
+    private void jButtonBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBookActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBookActionPerformed
 
     /**
      * @param args the command line arguments
